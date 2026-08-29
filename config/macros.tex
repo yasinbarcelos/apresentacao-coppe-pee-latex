@@ -1,0 +1,38 @@
+% =====================================================================
+% Macros de apoio aos slides
+% =====================================================================
+
+% Marcador visível de conteúdo pendente. Some ao compilar em modo final
+% ("make final"), para não ir pendência nenhuma na versão de entrega.
+\newif\ifrascunho
+\rascunhotrue
+\ifdefined\modofinal\rascunhofalse\fi
+
+\newcommand{\pendente}[1]{%
+  \ifrascunho\textcolor{peeaccent}{\footnotesize\textbf{[TODO: #1]}}\fi}
+
+% Destaque semântico.
+\newcommand{\dest}[1]{\textcolor{peedark}{\textbf{#1}}}
+\newcommand{\alerta}[1]{\textcolor{peeaccent}{\textbf{#1}}}
+
+% Figura ocupando o slide inteiro, com legenda opcional no rodapé.
+% Uso: \framefigura{caminho/figura}{Legenda}
+\newcommand{\framefigura}[2]{%
+  \begin{frame}[plain]
+    \centering
+    \includegraphics[width=0.92\paperwidth,height=0.82\paperheight,keepaspectratio]{#1}\\[0.3em]
+    {\scriptsize\color{peegray}#2}
+  \end{frame}}
+
+% Slide de dois blocos lado a lado.
+% Uso: \duascolunas{esquerda}{direita}
+\newcommand{\duascolunas}[2]{%
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}#1\end{column}
+    \begin{column}{0.48\textwidth}#2\end{column}
+  \end{columns}}
+
+% Abreviações recorrentes do domínio.
+\newcommand{\TSAD}{\mbox{TSAD}}
+\newcommand{\DQM}{\mbox{DQM}}
+\newcommand{\LAr}{\mbox{LAr}}

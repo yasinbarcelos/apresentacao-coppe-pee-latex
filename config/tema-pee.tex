@@ -1,0 +1,118 @@
+% =====================================================================
+% Identidade visual PEE/COPPE/UFRJ
+% Derivado do template de G. Gleizer (tema Dresden + logos institucionais),
+% adaptado para 16:9 e com posicionamento dos logos via TikZ.
+% =====================================================================
+
+\mode<presentation>{
+  \usetheme{Dresden}
+  \usecolortheme{seagull}
+}
+
+% O cabecalho de navegacao do Dresden e removido; a orientacao fica por
+% conta do slide de agenda e dos separadores de secao.
+\setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}[default][center]
+
+% ---------------------------------------------------------------------
+% Paleta
+% ---------------------------------------------------------------------
+\definecolor{peeblue}{RGB}{1,123,165}
+\definecolor{peedark}{RGB}{0,74,99}
+\definecolor{peegray}{RGB}{95,105,110}
+\definecolor{peeaccent}{RGB}{200,90,40}
+
+\setbeamercolor*{palette primary}{fg=black,bg=peeblue!80}
+\setbeamercolor*{palette secondary}{fg=black,bg=peeblue!80!gray!80}
+\setbeamercolor*{palette tertiary}{fg=black,bg=peeblue!100}
+\setbeamercolor*{palette quaternary}{fg=black,bg=peeblue!110}
+
+\setbeamercolor{frametitle}{fg=peedark}
+\setbeamercolor{title}{fg=peedark}
+\setbeamercolor{structure}{fg=peeblue}
+\setbeamercolor{alerted text}{fg=peeaccent}
+
+% ---------------------------------------------------------------------
+% Rodape
+%
+% O rodape de duas linhas do Dresden monta caixas cuja soma excede
+% \paperwidth em 16:9, produzindo um Overfull \hbox por slide. Aqui ele e
+% substituido por uma barra unica cujas larguras somam exatamente 1.
+% ---------------------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.4ex,dp=1.2ex,left]{author in head/foot}%
+      \hspace*{1.2ex}\usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.46\paperwidth,ht=2.4ex,dp=1.2ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.4ex,dp=1.2ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortinstitute
+      \hspace*{1.2em}\insertframenumber{}\hspace*{1.2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% ---------------------------------------------------------------------
+% Tipografia e elementos de lista
+% ---------------------------------------------------------------------
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamertemplate{itemize item}{\color{peeblue}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{peegray}\textendash}
+\setbeamertemplate{enumerate item}{\color{peeblue}\insertenumlabel.}
+\setbeamercolor{caption name}{fg=peedark}
+\setbeamerfont{caption}{size=\scriptsize}
+
+% Blocos com cabecalho institucional
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{fg=white,bg=peeblue}
+\setbeamercolor{block body}{bg=peeblue!8}
+\setbeamercolor{block title alerted}{fg=white,bg=peeaccent}
+\setbeamercolor{block body alerted}{bg=peeaccent!8}
+
+% ---------------------------------------------------------------------
+% Logos de fundo (TikZ: posicionamento absoluto, imune ao aspect ratio)
+% ---------------------------------------------------------------------
+\newcommand{\peelogomarca}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,inner sep=0pt]
+      at ([shift={(0.28cm,-0.22cm)}]current page.north west)
+      {\includegraphics[height=0.085\paperheight,keepaspectratio]{imgs/pee-logo-short.png}};
+  \end{tikzpicture}%
+}
+
+\newcommand{\peelogoscapa}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,inner sep=0pt]
+      at ([shift={(0.9cm,-0.7cm)}]current page.north west)
+      {\includegraphics[height=0.135\paperheight,keepaspectratio]{imgs/pee-logo.png}};
+    \node[anchor=north east,inner sep=0pt]
+      at ([shift={(-0.9cm,-0.7cm)}]current page.north east)
+      {\includegraphics[height=0.135\paperheight,keepaspectratio]{imgs/coppe-logo.pdf}};
+  \end{tikzpicture}%
+}
+
+% A marca dagua discreta acompanha todos os slides de conteudo.
+\usebackgroundtemplate{\peelogomarca}
+
+% A area util recua nas duas margens: o titulo centralizado fica livre da
+% marca dagua no canto superior esquerdo sem estourar a caixa.
+\setbeamersize{text margin left=1.1em,text margin right=1.1em}
+
+% ---------------------------------------------------------------------
+% Separador de secao automatico
+% ---------------------------------------------------------------------
+\AtBeginSection[]{%
+  \begin{frame}[plain,noframenumbering]
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=10pt,center,shadow=false,rounded=true]{title}
+      \usebeamerfont{title}\color{peedark}\insertsectionhead\par
+    \end{beamercolorbox}
+    \vfill
+  \end{frame}%
+}

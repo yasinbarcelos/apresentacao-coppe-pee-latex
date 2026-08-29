@@ -1,79 +1,61 @@
-\documentclass{beamer}
+% =====================================================================
+% EXAME DE QUALIFICAÇÃO DE DOUTORADO
+% Yá-Sin Barcelos Mghazli — PEE/COPPE/UFRJ
+%
+% Base: template de apresentações do PEE (G. Gleizer), adaptado para
+% 16:9 e organizado em módulos.
+%
+% Compilar:  make        (rascunho, com marcadores [TODO] visíveis)
+%            make final  (versão de entrega, sem marcadores)
+% =====================================================================
 
-\usetheme{default}
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% --- Codificação e idioma -------------------------------------------
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
 
-\setbeamertemplate{footline}[frame number]
-\setbeamertemplate{frametitle}[default][center]
+% --- Matemática e gráficos ------------------------------------------
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
 
-\mode<presentation>{
-\usetheme{Dresden}
-%\setbeamercovered{transparent}
-\usecolortheme{seagull}
+% Slides prontos vindos de fora (PowerPoint/Inkscape exportados em PDF)
+% entram por aqui:  \includepdf[pages=2-4]{externos/diagrama.pdf}
+\usepackage{pdfpages}
+
+% Figuras: as da própria apresentação e, diretamente, as da tese.
+\graphicspath{%
+  {figuras/}%
+  {imgs/}%
+  {../Tese-de-Doutorado/figures/}%
+  {../Tese-de-Doutorado/figures/experimentos/}%
+  {../Tese-de-Doutorado/figures/tsad/}%
+  {../Tese-de-Doutorado/figures/atlas/}%
 }
 
-\setbeamertemplate{headline}{}
+% --- Identidade visual, macros e metadados --------------------------
+\input{config/tema-pee.tex}
+\input{config/macros.tex}
+\input{config/metadados.tex}
 
-\definecolor{peeblue}{RGB}{1,123,165}
-\setbeamercolor*{palette primary}{fg=black,bg=peeblue!80}
-\setbeamercolor*{palette secondary}{fg=black,bg=peeblue!80!gray!80}
-\setbeamercolor*{palette tertiary}{fg=black,bg=peeblue!100}
-\setbeamercolor*{palette quaternary}{fg=black,bg=peeblue!110}
-
-\usebackgroundtemplate
-{%
-    \begin{picture}(210,40)(-5,2)
-    \includegraphics[width=0.07\paperwidth,keepaspectratio]{imgs/pee-logo-short.png}
-    \end{picture}%
-}
-
-\title{Título da Apresentação}
-\author{Autor da Apresentação}
-\date{29 de Novembro, 2016}
-
-\institute
-{
-  Universidade Federal do Rio de Janeiro\\
-  UFRJ/COPPE/PEE
-}
-
-
-% Let's get started
+% =====================================================================
 \begin{document}
 
-{
-\usebackgroundtemplate{
-    \begin{picture}(210,55)(-5,0)
-    \includegraphics[height=0.14\paperwidth,keepaspectratio]{imgs/pee-logo.png}
-    \end{picture}%
-    \begin{picture}(210,55)(-28,2)
-    \includegraphics[height=0.14\paperwidth,keepaspectratio]{imgs/coppe-logo.pdf}
-    \end{picture}
-}
-\begin{frame}
-  \bigskip\bigskip\bigskip\bigskip
-  \titlepage
-\end{frame}
-}
+\input{secoes/00-abertura.tex}
 
-\begin{frame}{Agenda}
-  \tableofcontents
-\end{frame}
+\input{secoes/01-contexto.tex}
+\input{secoes/02-fundamentacao.tex}
+\input{secoes/03-estado-arte.tex}
+\input{secoes/04-proposta.tex}
+\input{secoes/05-resultados.tex}
+\input{secoes/06-cronograma.tex}
 
-\section{Introdução}
-
-\begin{frame}{Introdução}
-  \begin{itemize}
-  \item {
-    Primeiro topico.
-    \pause
-  }
-  \item {
-    Segundo topico.
-  }
-  \end{itemize}
-\end{frame}
-
-
+\input{secoes/99-backup.tex}
 
 \end{document}

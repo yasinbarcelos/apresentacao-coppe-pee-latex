@@ -1,0 +1,12 @@
+% =====================================================================
+% Wrapper da versão de entrega.
+%
+% Define \modofinal antes de main.tex, o que desliga os marcadores
+% [TODO] (ver config/macros.tex). Existe como arquivo, e não como
+% -pretex na linha de comando, porque o quoting de "\def" não sobrevive
+% ao make/cmd.exe no Windows.
+%
+% Compilar com:  make final
+% =====================================================================
+\def\modofinal{}
+\input{main}
